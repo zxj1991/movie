@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#ffeaeaea"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <include layout="@layout/layout_title" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/linear_login"
+                android:background="#ffffff"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="账号余额："
+                        android:textSize="14sp"
+                        android:textColor="@color/textcolorBlack"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="累计提现："
+                        android:textSize="14sp"
+                        android:textColor="@color/textcolorBlack"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="60.0dip">
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:background="@drawable/button_style_1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="10.0dip">
+
+                    <TextView
+                        android:textSize="16.0sp"
+                        android:textColor="#ffffffff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="通知：分享电影也可以赚钱啦！！！" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="#ffffffff"
+                android:layout_width="fill_parent"
+                android:layout_height="140.0dip">
+
+                <LinearLayout
+                    android:id="@+id/linear_love_share"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.0dip"
+                    android:layout_marginLeft="@dimen/activity_bianju_margin"
+                    android:layout_marginRight="@dimen/activity_bianju_margin"
+                    android:layout_weight="1.0">
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_width="@dimen/view_size_25"
+                        android:layout_height="@dimen/view_size_25"
+                        android:src="@drawable/loveshare" />
+
+                    <TextView
+                        android:textSize="16.0sp"
+                        android:textColor="@color/textcolorBlack"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_bianju_margin"
+                        android:text="@string/iloveshrae" />
+
+                    <LinearLayout
+                        android:gravity="right|center"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                        <ImageView
+                            android:layout_width="@dimen/view_size_25"
+                            android:layout_height="@dimen/view_size_25"
+                            android:src="@drawable/next" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:background="#ffdcdbe0"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.0dip" />
+
+                <LinearLayout
+                    android:id="@+id/linear_my_collect"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.0dip"
+                    android:layout_marginLeft="@dimen/activity_bianju_margin"
+                    android:layout_marginRight="@dimen/activity_bianju_margin"
+                    android:layout_weight="1.0">
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_width="@dimen/view_size_25"
+                        android:layout_height="@dimen/view_size_25"
+                        android:src="@drawable/mycollect" />
+
+                    <TextView
+                        android:textSize="16.0sp"
+                        android:textColor="@color/textcolorBlack"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_bianju_margin"
+                        android:text="@string/mycollect" />
+
+                    <LinearLayout
+                        android:gravity="right|center"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                        <ImageView
+                            android:layout_width="@dimen/view_size_25"
+                            android:layout_height="@dimen/view_size_25"
+                            android:src="@drawable/next" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:background="#ffdcdbe0"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.0dip" />
+
+                <LinearLayout
+                    android:id="@+id/linear_help"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.0dip"
+                    android:layout_marginLeft="@dimen/activity_bianju_margin"
+                    android:layout_marginRight="@dimen/activity_bianju_margin"
+                    android:layout_weight="1.0">
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_width="@dimen/view_size_25"
+                        android:layout_height="@dimen/view_size_25"
+                        android:src="@drawable/help" />
+
+                    <TextView
+                        android:textSize="16.0sp"
+                        android:textColor="@color/textcolorBlack"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_bianju_margin"
+                        android:text="@string/help" />
+
+                    <LinearLayout
+                        android:gravity="right|center"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                        <ImageView
+                            android:layout_width="@dimen/view_size_25"
+                            android:layout_height="@dimen/view_size_25"
+                            android:src="@drawable/next" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="15.0dip" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="#ffffffff"
+                android:layout_width="fill_parent"
+                android:layout_height="140.0dip">
+
+                <LinearLayout
+                    android:id="@+id/linear_withdrawals"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.0dip"
+                    android:layout_marginLeft="@dimen/activity_bianju_margin"
+                    android:layout_marginRight="@dimen/activity_bianju_margin"
+                    android:layout_weight="1.0">
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_width="@dimen/view_size_25"
+                        android:layout_height="@dimen/view_size_25"
+                        android:src="@drawable/money" />
+
+                    <TextView
+                        android:textSize="16.0sp"
+                        android:textColor="@color/textcolorBlack"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_bianju_margin"
+                        android:text="@string/withdrawals" />
+
+                    <LinearLayout
+                        android:gravity="right|center"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                        <ImageView
+                            android:layout_width="@dimen/view_size_25"
+                            android:layout_height="@dimen/view_size_25"
+                            android:src="@drawable/next" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:background="#ffdcdbe0"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.0dip" />
+
+                <LinearLayout
+                    android:id="@+id/linear_present_record"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.0dip"
+                    android:layout_marginLeft="@dimen/activity_bianju_margin"
+                    android:layout_marginRight="@dimen/activity_bianju_margin"
+                    android:layout_weight="1.0">
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_width="@dimen/view_size_25"
+                        android:layout_height="@dimen/view_size_25"
+                        android:src="@drawable/moneynote" />
+
+                    <TextView
+                        android:textSize="16.0sp"
+                        android:textColor="@color/textcolorBlack"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_bianju_margin"
+                        android:text="@string/present_record" />
+
+                    <LinearLayout
+                        android:gravity="right|center"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                        <ImageView
+                            android:layout_width="@dimen/view_size_25"
+                            android:layout_height="@dimen/view_size_25"
+                            android:src="@drawable/next" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:background="#ffdcdbe0"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.0dip" />
+
+                <LinearLayout
+                    android:id="@+id/linear_share_record"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.0dip"
+                    android:layout_marginLeft="@dimen/activity_bianju_margin"
+                    android:layout_marginRight="@dimen/activity_bianju_margin"
+                    android:layout_weight="1.0">
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_width="@dimen/view_size_25"
+                        android:layout_height="@dimen/view_size_25"
+                        android:src="@drawable/sharenote" />
+
+                    <TextView
+                        android:textSize="16.0sp"
+                        android:textColor="@color/textcolorBlack"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_bianju_margin"
+                        android:text="@string/share_record" />
+
+                    <LinearLayout
+                        android:gravity="right|center"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                        <ImageView
+                            android:layout_width="@dimen/view_size_25"
+                            android:layout_height="@dimen/view_size_25"
+                            android:src="@drawable/next" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

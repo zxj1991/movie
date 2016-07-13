@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="#ffeaeaea" android:layout_width="fill_parent" android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <include layout="@layout/layout_title" />
+    <ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <LinearLayout android:layout_width="fill_parent" android:layout_height="15.0dip" />
+            <LinearLayout android:orientation="vertical" android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="93.0dip">
+                <LinearLayout android:id="@+id/linear_personal" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_marginLeft="@dimen/activity_bianju_margin" android:layout_marginRight="@dimen/activity_bianju_margin" android:layout_weight="1.0">
+                    <ImageView android:layout_gravity="center" android:layout_width="@dimen/view_size_25" android:layout_height="@dimen/view_size_25" android:src="@drawable/gerenziliao" />
+                    <TextView android:textSize="16.0sp" android:textColor="@color/textcolorBlack" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/activity_bianju_margin" android:text="@string/personal_data" />
+                    <LinearLayout android:gravity="right|center" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                        <ImageView android:layout_width="@dimen/view_size_25" android:layout_height="@dimen/view_size_25" android:src="@drawable/next" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:background="#ffdcdbe0" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+                <LinearLayout android:id="@+id/linear_security" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_marginLeft="@dimen/activity_bianju_margin" android:layout_marginRight="@dimen/activity_bianju_margin" android:layout_weight="1.0">
+                    <ImageView android:layout_gravity="center" android:layout_width="@dimen/view_size_25" android:layout_height="@dimen/view_size_25" android:src="@drawable/anquan" />
+                    <TextView android:textSize="16.0sp" android:textColor="@color/textcolorBlack" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/activity_bianju_margin" android:text="@string/account_security" />
+                    <LinearLayout android:gravity="right|center" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                        <ImageView android:layout_width="@dimen/view_size_25" android:layout_height="@dimen/view_size_25" android:src="@drawable/next" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:background="#ffdcdbe0" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="fill_parent" android:layout_height="15.0dip" />
+            <LinearLayout android:orientation="vertical" android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="93.0dip">
+                <LinearLayout android:id="@+id/linear_reset" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_marginLeft="@dimen/activity_bianju_margin" android:layout_marginRight="@dimen/activity_bianju_margin" android:layout_weight="1.0">
+                    <ImageView android:layout_gravity="center" android:layout_width="@dimen/view_size_25" android:layout_height="@dimen/view_size_25" android:src="@drawable/changpass" />
+                    <TextView android:textSize="16.0sp" android:textColor="@color/textcolorBlack" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/activity_bianju_margin" android:text="@string/modif_password" />
+                    <LinearLayout android:gravity="right|center" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                        <ImageView android:layout_width="@dimen/view_size_25" android:layout_height="@dimen/view_size_25" android:src="@drawable/next" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:background="#ffdcdbe0" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+                <LinearLayout android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_marginLeft="@dimen/activity_bianju_margin" android:layout_marginRight="@dimen/activity_bianju_margin" android:layout_weight="1.0">
+                    <ImageView android:layout_gravity="center" android:layout_width="@dimen/view_size_25" android:layout_height="@dimen/view_size_25" android:src="@drawable/clean" />
+                    <TextView android:textSize="16.0sp" android:textColor="@color/textcolorBlack" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/activity_bianju_margin" android:text="@string/clear_cache" />
+                    <LinearLayout android:gravity="right|center" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                        <ImageView android:layout_width="@dimen/view_size_25" android:layout_height="@dimen/view_size_25" android:src="@drawable/next" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout android:layout_width="fill_parent" android:layout_height="15.0dip" />
+            <LinearLayout android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="46.0dip">
+                <LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="@dimen/activity_bianju_margin" android:layout_marginRight="@dimen/activity_bianju_margin">
+                    <ImageView android:layout_gravity="center" android:layout_width="@dimen/view_size_25" android:layout_height="@dimen/view_size_25" android:src="@drawable/update" />
+                    <TextView android:textSize="16.0sp" android:textColor="@color/textcolorBlack" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/activity_bianju_margin" android:text="@string/updates" />
+                    <LinearLayout android:gravity="right|center" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                        <ImageView android:layout_width="@dimen/view_size_25" android:layout_height="@dimen/view_size_25" android:src="@drawable/next" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout android:gravity="center" android:background="@drawable/button_style_1" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="40.0dip" android:layout_margin="40.0dip">
+                <TextView android:textSize="16.0sp" android:textColor="#ffffffff" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="退出登录" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

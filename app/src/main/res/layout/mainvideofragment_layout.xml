@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.example.movie.View.MyScrollview
+        android:id="@+id/scrollView_1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45.0dip"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:id="@+id/sousuo"
+                    android:background="@drawable/sousuo_style"
+                    android:layout_width="0dp"
+                    android:layout_height="25.0dip"
+                    android:layout_weight="5"
+                    android:layout_margin="10.0dip">
+
+                    <ImageView
+                        android:layout_width="18.0dip"
+                        android:layout_height="18.0dip"
+                        android:src="@drawable/suos" />
+
+                    <TextView
+                        android:textSize="12.0sp"
+                        android:textColor="#ff323232"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="易发搜索" />
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center"
+                    android:id="@+id/fenlei"
+                    android:background="@drawable/sousuo_style"
+                    android:layout_width="0dp"
+                    android:layout_height="25.0dip"
+                    android:layout_weight="5"
+                    android:layout_margin="10.0dip">
+                    <TextView
+                        android:textSize="12.0sp"
+                        android:textColor="#ff323232"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="全部分类" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="180.0dip">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_viewpager"
+                    android:layout_width="fill_parent"
+                    android:layout_height="180.0dip" />
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_gravity="bottom"
+                    android:background="#88000000"
+                    android:layout_width="fill_parent"
+                    android:layout_height="15.0dip">
+
+                    <LinearLayout
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:id="@+id/tips"
+                        android:layout_width="55.0dip"
+                        android:layout_height="15.0dip" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="0.0dip"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginRight="10.0dip"
+                android:layout_weight="2.0">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20.0dip"
+                    android:text="热门推荐" />
+
+                <com.example.movie.View.MyGridView
+                    android:id="@+id/gridview_Home"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:horizontalSpacing="10.0dip"
+                    android:verticalSpacing="10.0dip"
+                    android:stretchMode="columnWidth"
+                    android:numColumns="2" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.example.movie.View.MyScrollview>
+</LinearLayout>
