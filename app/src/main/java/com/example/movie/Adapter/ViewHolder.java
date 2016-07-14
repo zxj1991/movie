@@ -50,7 +50,7 @@ public class ViewHolder {
     }
 
     /**
-     *
+     *设置item的textview
      */
 
     public ViewHolder setText(int viewId,String text){
@@ -60,7 +60,7 @@ public class ViewHolder {
     }
 
     /**
-     *
+     *设置图片
      */
     //public ViewHolder setImageBitmap(int viewId,Bitmap bm){
     public ViewHolder setImageBitmap(int viewId,int bm){
@@ -68,6 +68,14 @@ public class ViewHolder {
         view.setImageResource(bm);
         return this;
     }
+
+    public ViewHolder setTextColor(int viewId,String text,int color){
+        TextView view = getView(viewId);
+        view.setText(text);
+        view.setTextColor(color);
+        return this;
+    }
+
 
     public int getPosition(){
         return mPosition;

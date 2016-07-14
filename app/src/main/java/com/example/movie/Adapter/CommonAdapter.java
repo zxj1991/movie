@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -11,7 +12,6 @@ import java.util.List;
  * Created by Administrator on 2016/7/13 0013.
  */
 public abstract class CommonAdapter<T> extends BaseAdapter {
-
     private Context mContext;
     private List<T> mData;
 
@@ -46,4 +46,8 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
     private ViewHolder getViewHolder(int position, View convertView, ViewGroup parent) {
         return ViewHolder.getInstance(mContext, convertView, parent, mItemLayoutId, position);
     }
+
+
+
+
 }

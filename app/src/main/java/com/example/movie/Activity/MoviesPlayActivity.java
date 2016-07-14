@@ -21,7 +21,6 @@ import com.example.movie.View.VideoView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.movie.R.id.id_horizontalScrollView;
 
 /**
  * Created by 潇舰 on 2016/7/10.
@@ -31,7 +30,7 @@ public class MoviesPlayActivity extends BaseActivity implements MediaController.
     private RelativeLayout rlDD;
     private VideoView viv;
     private MyHorizontalScrollView horizontalScrollView;
-    private int[] arr = new int[42];
+    private int[] arr = new int[17];
     List<Integer> list = new ArrayList<>();
 
     @Override
@@ -53,7 +52,7 @@ public class MoviesPlayActivity extends BaseActivity implements MediaController.
     @Override
     public void initView() {
         addData();
-        horizontalScrollView = (MyHorizontalScrollView) findViewById(id_horizontalScrollView);
+        horizontalScrollView = (MyHorizontalScrollView) findViewById(R.id.id_horizontalScrollView);
 
 
         viv = (VideoView) findViewById(R.id.videoView);

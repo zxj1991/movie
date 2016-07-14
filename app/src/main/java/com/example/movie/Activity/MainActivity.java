@@ -110,19 +110,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         layout_me.setOnClickListener(this);
     }
 
-    public void onClick(View paramView) {
-        switch (paramView.getId()) {
-            default:
-                return;
-            case 2131558511:
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.layout_video:
                 setTableSelection(0);
-                return;
-            case 2131558514:
+                break;
+            case R.id.layout_share:
                 setTableSelection(1);
-                return;
-            case 2131558517:
+                break;
+            case R.id.layout_me:
+                setTableSelection(2);
+                break;
         }
-        setTableSelection(2);
     }
 
     public void setcontentView() {

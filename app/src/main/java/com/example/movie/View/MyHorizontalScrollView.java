@@ -20,16 +20,14 @@ import java.util.Map;
  * 用于横向滑动的scrollview
  * Created by Administrator on 2016/7/13 0013.
  */
-public class MyHorizontalScrollView extends HorizontalScrollView implements View.OnClickListener{
+public class MyHorizontalScrollView extends HorizontalScrollView implements View.OnClickListener {
 
     /**
      * 图片滚动时的回调接口
      *
      * @author zhy
-     *
      */
-    public interface CurrentImageChangeListener
-    {
+    public interface CurrentImageChangeListener {
         void onCurrentImgChanged(int position, View viewIndicator);
     }
 
@@ -37,11 +35,9 @@ public class MyHorizontalScrollView extends HorizontalScrollView implements View
      * 条目点击时的回调
      *
      * @author zhy
-     *
      */
-    public interface OnItemClickListener
-    {
-        void onClick(View view, int pos);
+    public interface OnItemClickListener {
+        void onClick(View view, int position);
     }
 
     private CurrentImageChangeListener mListener;
@@ -94,8 +90,7 @@ public class MyHorizontalScrollView extends HorizontalScrollView implements View
      */
     private Map<View, Integer> mViewPos = new HashMap<View, Integer>();
 
-    public MyHorizontalScrollView(Context context, AttributeSet attrs)
-    {
+    public MyHorizontalScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);
         // 获得屏幕宽度
         WindowManager wm = (WindowManager) context
@@ -106,8 +101,7 @@ public class MyHorizontalScrollView extends HorizontalScrollView implements View
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
-    {
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         mContainer = (LinearLayout) getChildAt(0);
     }
@@ -115,11 +109,9 @@ public class MyHorizontalScrollView extends HorizontalScrollView implements View
     /**
      * 加载下一张图片
      */
-    protected void loadNextImg()
-    {
+    protected void loadNextImg() {
         // 数组边界值计算
-        if (mCurrentIndex == mAdapter.getCount() - 1)
-        {
+        if (mCurrentIndex == mAdapter.getCount() - 1) {
             return;
         }
         //移除第一张图片，且将水平滚动位置置0
@@ -136,24 +128,22 @@ public class MyHorizontalScrollView extends HorizontalScrollView implements View
         //当前第一张图片小标
         mFristIndex++;
         //如果设置了滚动监听则触发
-        if (mListener != null)
-        {
+        if (mListener != null) {
             notifyCurrentImgChanged();
         }
 
     }
+
     /**
      * 加载前一张图片
      */
-    protected void loadPreImg()
-    {
+    protected void loadPreImg() {
         //如果当前已经是第一张，则返回
         if (mFristIndex == 0)
             return;
         //获得当前应该显示为第一张图片的下标
         int index = mCurrentIndex - mCountOneScreen;
-        if (index >= 0)
-        {
+        if (index >= 0) {
 //			mContainer = (LinearLayout) getChildAt(0);
             //移除最后一张
             int oldViewPos = mContainer.getChildCount() - 1;
@@ -171,8 +161,7 @@ public class MyHorizontalScrollView extends HorizontalScrollView implements View
             mCurrentIndex--;
             mFristIndex--;
             //回调
-            if (mListener != null)
-            {
+            if (mListener != null) {
                 notifyCurrentImgChanged();
 
             }
@@ -182,11 +171,9 @@ public class MyHorizontalScrollView extends HorizontalScrollView implements View
     /**
      * 滑动时的回调
      */
-    public void notifyCurrentImgChanged()
-    {
+    public void notifyCurrentImgChanged() {
         //先清除所有的背景色，点击时会设置为蓝色
-        for (int i = 0; i < mContainer.getChildCount(); i++)
-        {
+        for (int i = 0; i < mContainer.getChildCount(); i++) {
             mContainer.getChildAt(i).setBackgroundColor(Color.WHITE);
         }
 
@@ -199,8 +186,7 @@ public class MyHorizontalScrollView extends HorizontalScrollView implements View
      *
      * @param mAdapter
      */
-    public void initDatas(CommonAdapter mAdapter)
-    {
+    public void initDatas(CommonAdapter mAdapter) {
         this.mAdapter = mAdapter;
         mContainer = (LinearLayout) getChildAt(0);
         // 获得适配器中第一个View
@@ -208,8 +194,7 @@ public class MyHorizontalScrollView extends HorizontalScrollView implements View
         mContainer.addView(view);
 
         // 强制计算当前View的宽和高
-        if (mChildWidth == 0 && mChildHeight == 0)
-        {
+        if (mChildWidth == 0 && mChildHeight == 0) {
             int w = View.MeasureSpec.makeMeasureSpec(0,
                     View.MeasureSpec.UNSPECIFIED);
             int h = View.MeasureSpec.makeMeasureSpec(0,
@@ -220,8 +205,11 @@ public class MyHorizontalScrollView extends HorizontalScrollView implements View
             Log.e(TAG, view.getMeasuredWidth() + "," + view.getMeasuredHeight());
             mChildHeight = view.getMeasuredHeight();
             // 计算每次加载多少个View
-            mCountOneScreen = (mScreenWitdh / mChildWidth == 0)?mScreenWitdh / mChildWidth+1:mScreenWitdh / mChildWidth+2;
-
+            mCountOneScreen = (mScreenWitdh / mChildWidth == 0) ? mScreenWitdh / mChildWidth + 1 : mScreenWitdh / mChildWidth + 2;
+            //如果view个数，没有屏幕能够显示的个数多，那么就用view的个数，为显示的个数
+            if (mCountOneScreen > mAdapter.getCount()) {
+                mCountOneScreen = mAdapter.getCount();
+            }
             Log.e(TAG, "mCountOneScreen = " + mCountOneScreen
                     + " ,mChildWidth = " + mChildWidth);
 
@@ -236,14 +224,12 @@ public class MyHorizontalScrollView extends HorizontalScrollView implements View
      *
      * @param mCountOneScreen
      */
-    public void initFirstScreenChildren(int mCountOneScreen)
-    {
+    public void initFirstScreenChildren(int mCountOneScreen) {
         mContainer = (LinearLayout) getChildAt(0);
         mContainer.removeAllViews();
         mViewPos.clear();
 
-        for (int i = 0; i < mCountOneScreen; i++)
-        {
+        for (int i = 0; i < mCountOneScreen; i++) {
             View view = mAdapter.getView(i, null, mContainer);
             view.setOnClickListener(this);
             mContainer.addView(view);
@@ -251,30 +237,25 @@ public class MyHorizontalScrollView extends HorizontalScrollView implements View
             mCurrentIndex = i;
         }
 
-        if (mListener != null)
-        {
+        if (mListener != null) {
             notifyCurrentImgChanged();
         }
 
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent ev)
-    {
-        switch (ev.getAction())
-        {
+    public boolean onTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
             case MotionEvent.ACTION_MOVE:
 //			Log.e(TAG, getScrollX() + "");
 
                 int scrollX = getScrollX();
                 // 如果当前scrollX为view的宽度，加载下一张，移除第一张
-                if (scrollX >= mChildWidth)
-                {
+                if (scrollX >= mChildWidth) {
                     loadNextImg();
                 }
                 // 如果当前scrollX = 0， 往前设置一张，移除最后一张
-                if (scrollX == 0)
-                {
+                if (scrollX == 0) {
                     loadPreImg();
                 }
                 break;
@@ -283,26 +264,21 @@ public class MyHorizontalScrollView extends HorizontalScrollView implements View
     }
 
     @Override
-    public void onClick(View v)
-    {
-        if (mOnClickListener != null)
-        {
-            for (int i = 0; i < mContainer.getChildCount(); i++)
-            {
+    public void onClick(View v) {
+        if (mOnClickListener != null) {
+            for (int i = 0; i < mContainer.getChildCount(); i++) {
                 mContainer.getChildAt(i).setBackgroundColor(Color.WHITE);
             }
             mOnClickListener.onClick(v, mViewPos.get(v));
         }
     }
 
-    public void setOnItemClickListener(OnItemClickListener mOnClickListener)
-    {
+    public void setOnItemClickListener(OnItemClickListener mOnClickListener) {
         this.mOnClickListener = mOnClickListener;
     }
 
     public void setCurrentImageChangeListener(
-            CurrentImageChangeListener mListener)
-    {
+            CurrentImageChangeListener mListener) {
         this.mListener = mListener;
     }
 

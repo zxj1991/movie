@@ -7,17 +7,12 @@
 
     <include layout="@layout/layout_title" />
 
-    <com.example.movie.View.MyHorizontalScrollView
-        android:id="@+id/hscrollview"
+    <ListView
+        android:id="@+id/listview_fenlei"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="wrap_content"
+        android:divider="@null">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-        </LinearLayout>
-    </com.example.movie.View.MyHorizontalScrollView>
+    </ListView>
 
 </LinearLayout>
