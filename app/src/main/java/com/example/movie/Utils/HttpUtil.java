@@ -34,4 +34,5 @@ public class HttpUtil {
 //                map,//传入参数
 //                callBack);//接口接受数据
 //    }
+
 }

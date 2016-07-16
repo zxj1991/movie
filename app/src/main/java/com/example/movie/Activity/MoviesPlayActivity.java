@@ -41,6 +41,7 @@ public class MoviesPlayActivity extends BaseActivity implements MediaController.
     @Override
     public void afterinitView() {
         setadapter();
+        setTuijianadapter();
 
     }
 
@@ -109,8 +110,28 @@ public class MoviesPlayActivity extends BaseActivity implements MediaController.
         horizontalScrollView.initDatas(new CommonAdapter<Integer>(this, list, R.layout.item_jishu) {
             @Override
             public void convert(ViewHolder viewHolder, Integer item) {
-                viewHolder.setText(R.id.text_ceshi,item+"");
+                viewHolder.setText(R.id.text_ceshi, item + "");
             }
         });
     }
+
+    /**
+     * 推荐适配
+     */
+public void setTuijianadapter(){
+    final List<String> list=new ArrayList<>();
+    for (int i=0;i<6;i++){
+        list.add("http://pic5.nipic.com/20100129/2714851_224213001047_2.jpg");
+        list.add("http://www.232947.cc/imgall/nfwwoltcmvxgi2lcmfxs4y3pnu/xiuxian/20109/8/201098181350331.JPG");
+    }
+    MyHorizontalScrollView horizontalScrollView= (MyHorizontalScrollView) findViewById(R.id.horizontalScrollView_tuijian);
+    horizontalScrollView.initDatas(new CommonAdapter<String>(this,list,R.layout.item_gridview_tuijian) {
+        @Override
+        public void convert(ViewHolder viewHolder, String item) {
+            viewHolder.setImageBitmap(R.id.Imageview_tuijian,item);
+        }
+    });
+}
+
+
 }
