@@ -1,16 +1,16 @@
 package com.example.movie.Activity;
 
-import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.movie.Adapter.CommonAdapter;
 import com.example.movie.Adapter.ViewHolder;
 import com.example.movie.R;
+import com.example.movie.Bean.FenleiInfo;
+import com.example.movie.Utils.HttpCallBack;
+import com.example.movie.Utils.HttpUtil;
 import com.example.movie.View.MyGridView;
 import com.example.movie.View.MyHorizontalScrollView;
 
@@ -50,36 +50,38 @@ public class DiffMoviesActivity extends BaseActivity {
     public void initView() {
         addData();
         listview_fenlei = (ListView) findViewById(R.id.listview_fenlei);
+        gridview = (MyGridView) findViewById(R.id.gridview_fenlei);
     }
-
 
 
     private MyGridView gridview;
-    public void setgridview(){
-        final List<String> list=new ArrayList<>();
-        for (int i=0;i<6;i++){
-            list.add("http://pic5.nipic.com/20100129/2714851_224213001047_2.jpg");
-            list.add("http://www.232947.cc/imgall/nfwwoltcmvxgi2lcmfxs4y3pnu/xiuxian/20109/8/201098181350331.JPG");
-        }
-        gridview= (MyGridView) findViewById(R.id.gridview_fenlei);
-//        gridview.setSelector(new ColorDrawable(0));
-        gridview.setAdapter(new CommonAdapter<String>(this,list,R.layout.item_gridview_fenlei) {
+    List<FenleiInfo> list_fenlei;//视频分类的集合
+
+    /**
+     * 分类界面的gridview加载方法
+     */
+    public void setgridview() {
+
+        HttpUtil.getFenLei(this, new HttpCallBack() {
             @Override
-            public void convert(ViewHolder viewHolder, String item) {
-//                viewHolder.setdownloadImage(R.id.image_fenlei,list);
-                viewHolder.setImageBitmap(R.id.image_fenlei,item);
+            public void onSuccess(String result) {
+                list_fenlei = FenleiInfo.arrayFenleiInfoFromData(result);
+                gridview.setAdapter(new CommonAdapter<FenleiInfo>(DiffMoviesActivity.this, list_fenlei, R.layout.item_gridview_fenlei) {
+                    @Override
+                    public void convert(ViewHolder viewHolder, FenleiInfo item) {
+                        viewHolder.setImageBitmap(R.id.image_fenlei, item.getD_pic());
+                        viewHolder.setText(R.id.textView_fenlei, item.getD_name());
+                    }
+                });
+
+            }
+
+            @Override
+            public void onFailure(String error) {
+
             }
         });
     }
-
-
-
-
-
-
-
-
-
 
 
     public void addData() {

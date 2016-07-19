@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.example.movie.Adapter.CommonAdapter;
 import com.example.movie.Adapter.ViewHolder;
 import com.example.movie.R;
+import com.example.movie.Utils.HttpCallBack;
+import com.example.movie.Utils.HttpUtil;
 import com.example.movie.View.MediaController;
 import com.example.movie.View.MyHorizontalScrollView;
 import com.example.movie.View.VideoView;
@@ -32,10 +34,19 @@ public class MoviesPlayActivity extends BaseActivity implements MediaController.
     private MyHorizontalScrollView horizontalScrollView;
     private int[] arr = new int[17];
     List<Integer> list = new ArrayList<>();
+    HttpCallBack httpCallBack;
 
     @Override
     public void setcontentView() {
         setContentView(R.layout.activity_moviesplay);
+
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                HttpUtil.getbaidu(MoviesPlayActivity.this, httpCallBack);
+//
+//            }
+//        }).start();
     }
 
     @Override

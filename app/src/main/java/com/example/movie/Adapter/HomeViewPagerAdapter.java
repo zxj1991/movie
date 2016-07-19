@@ -1,5 +1,6 @@
 package com.example.movie.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
@@ -10,9 +11,11 @@ import android.view.ViewGroup;
 import com.example.movie.Activity.DiffMoviesActivity;
 import com.example.movie.Activity.MoviesPlayActivity;
 import com.example.movie.Activity.SearchActivity;
+import com.example.movie.Bean.ShouyeInfo;
 import com.example.movie.Utils.ImageUtil;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 用于首页viewpager的轮播适配器
@@ -29,6 +32,8 @@ public class HomeViewPagerAdapter extends PagerAdapter {
         this.imageUtil = ImageUtil.getInstance();
         this.imageUtil.Imagecache();
     }
+
+
 
 
     public int getCount() {

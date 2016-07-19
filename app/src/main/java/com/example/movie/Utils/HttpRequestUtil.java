@@ -40,7 +40,7 @@ public class HttpRequestUtil {
      */
     public static void send(final Context context,HttpMethod method,String url,Map<String,Object> map,
                             final HttpCallBack mHttpCallBack){
-//        url = ConstantParser.HTTP_URI + url;
+        url = ConstantParser.HTTP_URI + url;
 //        Log.i("url", url);
 
         http.configTimeout(60 * 1000);
@@ -62,6 +62,7 @@ public class HttpRequestUtil {
                     @Override
                     public void onSuccess(ResponseInfo<String> responseInfo) {
                         mHttpCallBack.onSuccess(responseInfo.result);
+                        Log.e("msg",responseInfo+"");
                     }
 
                     @Override
@@ -75,44 +76,6 @@ public class HttpRequestUtil {
                 });
     }
 
-    public static void send1(final Context context, HttpMethod method,
-                             String url, Map<String, Object> map,
-                             final HttpCallBack mHttpCallBack) {
-        url = "http://sjskrbb.com/Application/pay/PaySubmit.php";
-        Log.i("url", url);
-
-        http.configTimeout(60 * 1000);
-        http.configRequestThreadPoolSize(10);
-        http.send(method, url, parserMap(method, map),
-                new RequestCallBack<String>() {
-                    @Override
-                    public void onLoading(long total, long current,
-                                          boolean isUploading) {
-                        if (isUploading) {
-                            System.out.println("upload: " + current + "/"
-                                    + total);
-                        } else {
-                            System.out.println("reply: " + current + "/"
-                                    + total);
-                        }
-                    }
-
-                    @Override
-                    public void onSuccess(ResponseInfo<String> responseInfo) {
-                        mHttpCallBack.onSuccess(responseInfo.result);
-                    }
-
-                    @Override
-                    public void onFailure(HttpException error, String msg) {
-                        mHttpCallBack.onFailure(msg);
-                        error.printStackTrace();
-                        Log.e("error", "msg=" + msg);
-                        Toast.makeText(context, "请求失败", Toast.LENGTH_SHORT).show();
-                    }
-
-                });
-
-    }
 
     /**
      * 解析map集合 并封装到RequestParams对象
@@ -148,13 +111,4 @@ public class HttpRequestUtil {
     }
 
 
-
-    /**
-     * 网络请求返回结果，回调接口
-     */
-    public interface HttpCallBack{
-        public void onSuccess(String result);
-        public void onFailure(String error);
-
-    }
 }

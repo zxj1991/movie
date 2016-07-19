@@ -24,7 +24,7 @@ public class HttpUtil {
 //        map.put("参数1", str3);
 //        HttpRequestUtil.send(context,
 //                HttpRequest.HttpMethod.POST,//xUtils传参方式 GET,POST,PUT,HEAD,MOVE,COPY,DELETE,OPTIONS,TRACE,CONNECT
-//                ConstantParser.ACCESS_TOKEN,//请求地址 除开地址前半部分服务器地址 直接拼接除开服务器后面的地址
+//                ConstantParser.LOGIN,//请求地址 除开地址前半部分服务器地址 直接拼接除开服务器后面的地址
 //                /** 例如
 //                 * public static final String HTTP_HANDER = "http://sjskrbb.com/index.php/"  前半部分服务器地址
 //                 * 后面拼接
@@ -34,5 +34,29 @@ public class HttpUtil {
 //                map,//传入参数
 //                callBack);//接口接受数据
 //    }
+
+    /**
+     * 获取分类界面数据
+     *
+     * @param context
+     * @param callBack
+     */
+    public static void getFenLei(Context context, HttpCallBack callBack) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("null", null);
+        HttpRequestUtil.send(context, HttpRequest.HttpMethod.POST, ConstantParser.LieBiao1, map, callBack);
+
+    }
+
+    /**
+     * 获取首页界面数据
+     */
+    public static void getShouye(Context context, HttpCallBack callBackack) {
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("null",null);
+        HttpRequestUtil.send(context,HttpRequest.HttpMethod.POST,ConstantParser.Shouye,map,callBackack);
+
+    }
 
 }
