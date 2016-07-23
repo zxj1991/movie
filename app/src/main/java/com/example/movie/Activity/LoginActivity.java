@@ -74,6 +74,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         HttpUtil.getLogin(this, phone, password, new HttpCallBack() {
             @Override
             public void onSuccess(String result) {
+                Log.e("msg",result);
                 if (result.substring(1, result.length() - 1).equals("success")) {
                     Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                     Intent intent =new Intent();
