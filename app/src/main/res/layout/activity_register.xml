@@ -1,26 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <include layout="@layout/layout_title" />
-    <LinearLayout android:orientation="vertical" android:background="@color/colorjianju" android:layout_width="fill_parent" android:layout_height="fill_parent">
-        <LinearLayout android:orientation="vertical" android:background="@color/colorWhite" android:layout_width="fill_parent" android:layout_height="180.0dip" android:layout_marginTop="15.0dip">
-            <LinearLayout android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_marginLeft="10.0dip" android:layout_weight="1.0">
-                <EditText android:textColorHint="@color/textcolorGray" android:layout_gravity="center" android:background="@null" android:layout_width="fill_parent" android:layout_height="wrap_content" android:hint="输入手机号" android:inputType="text" android:imeOptions="actionSearch" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/colorjianju"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@color/colorWhite"
+            android:layout_width="fill_parent"
+            android:layout_height="180.0dip"
+            android:layout_marginTop="15.0dip">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0.0dip"
+                android:layout_marginLeft="10.0dip"
+                android:layout_weight="1.0">
+
+                <EditText
+                    android:id="@+id/edit_register_phone"
+                    android:textColorHint="@color/textcolorGray"
+                    android:layout_gravity="center"
+                    android:background="@null"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="输入手机号"
+                    android:inputType="text"
+                    android:imeOptions="actionSearch" />
             </LinearLayout>
-            <LinearLayout android:background="@color/colorjianju" android:layout_width="fill_parent" android:layout_height="1.0dip" />
-            <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_marginLeft="10.0dip" android:layout_weight="1.0">
-                <EditText android:textColorHint="@color/textcolorGray" android:layout_gravity="center" android:background="@null" android:layout_width="0.0dip" android:layout_height="wrap_content" android:hint="输入验证码" android:layout_weight="3.0" android:inputType="text" android:imeOptions="actionSearch" />
-                <LinearLayout android:background="@color/colorjianju" android:layout_width="1.0dip" android:layout_height="fill_parent" />
-                <TextView android:textSize="14.0sp" android:textColor="#ffff4c39" android:gravity="center" android:layout_gravity="center" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="获取验证码" android:layout_weight="1.0" />
+
+            <LinearLayout
+                android:background="@color/colorjianju"
+                android:layout_width="fill_parent"
+                android:layout_height="1.0dip" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="0.0dip"
+                android:layout_marginLeft="10.0dip"
+                android:layout_weight="1.0">
+
+                <EditText
+                    android:id="@+id/edit_register_code"
+                    android:textColorHint="@color/textcolorGray"
+                    android:layout_gravity="center"
+                    android:background="@null"
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:hint="输入验证码"
+                    android:layout_weight="3.0"
+                    android:inputType="text"
+                    android:imeOptions="actionSearch" />
+
+                <LinearLayout
+                    android:background="@color/colorjianju"
+                    android:layout_width="1.0dip"
+                    android:layout_height="fill_parent" />
+
+                <TextView
+                    android:id="@+id/textView_getcode"
+                    android:textSize="14.0sp"
+                    android:textColor="#ffff4c39"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_width="0.0dip"
+                    android:layout_height="match_parent"
+                    android:text="获取验证码"
+                    android:layout_weight="1.0" />
             </LinearLayout>
-            <LinearLayout android:background="@color/colorjianju" android:layout_width="fill_parent" android:layout_height="1.0dip" />
-            <LinearLayout android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_marginLeft="10.0dip" android:layout_weight="1.0">
-                <EditText android:textColorHint="@color/textcolorGray" android:layout_gravity="center" android:background="@null" android:layout_width="fill_parent" android:layout_height="wrap_content" android:hint="输入密码" android:inputType="text" android:imeOptions="actionSearch" />
+
+            <LinearLayout
+                android:background="@color/colorjianju"
+                android:layout_width="fill_parent"
+                android:layout_height="1.0dip" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0.0dip"
+                android:layout_marginLeft="10.0dip"
+                android:layout_weight="1.0">
+
+                <EditText
+                    android:id="@+id/edit_register_password"
+                    android:textColorHint="@color/textcolorGray"
+                    android:layout_gravity="center"
+                    android:background="@null"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="输入密码"
+                    android:inputType="textPassword"
+                    android:imeOptions="actionSearch" />
             </LinearLayout>
         </LinearLayout>
-        <LinearLayout android:layout_width="fill_parent" android:layout_height="60.0dip" android:layout_marginTop="50.0dip">
-            <LinearLayout android:gravity="center" android:background="@drawable/button_style_1" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="10.0dip">
-                <TextView android:textSize="18.0sp" android:textColor="#ffffffff" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="注册" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="60.0dip"
+            android:layout_marginTop="50.0dip">
+
+            <LinearLayout
+                android:id="@+id/button_register"
+                android:gravity="center"
+                android:background="@drawable/button_style_1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="10.0dip">
+
+                <TextView
+                    android:textSize="18.0sp"
+                    android:textColor="#ffffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="注册" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

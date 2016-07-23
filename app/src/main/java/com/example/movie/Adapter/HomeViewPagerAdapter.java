@@ -7,12 +7,15 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.movie.Activity.DiffMoviesActivity;
 import com.example.movie.Activity.MoviesPlayActivity;
 import com.example.movie.Activity.SearchActivity;
 import com.example.movie.Bean.ShouyeInfo;
+import com.example.movie.R;
 import com.example.movie.Utils.ImageUtil;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,15 +28,14 @@ public class HomeViewPagerAdapter extends PagerAdapter {
     private Context context;
     ImageUtil imageUtil;
     private ArrayList<View> list;
-
-    public HomeViewPagerAdapter(Context context, ArrayList<View> list) {
+private List<ShouyeInfo.SlideBean> list_slide;
+    public HomeViewPagerAdapter(Context context, ArrayList<View> list,List<ShouyeInfo.SlideBean> list_slide) {
         this.context = context;
         this.list = list;
-        this.imageUtil = ImageUtil.getInstance();
-        this.imageUtil.Imagecache();
+        this.list_slide=list_slide;
+        imageUtil = ImageUtil.getInstance();
+        imageUtil.Imagecache();
     }
-
-
 
 
     public int getCount() {
@@ -50,6 +52,9 @@ public class HomeViewPagerAdapter extends PagerAdapter {
                     .removeView(list.get(position % list.size()));
         }
             container.addView(list.get(position % list.size()), 0);
+        View view=list.get(position%list.size());
+        ImageView imageView= (ImageView) view.findViewById(R.id.imageview_viewpager);
+        ImageLoader.getInstance().displayImage(list_slide.get(position%list.size()).getD_pic(),imageView,imageUtil.getOptions());
         list.get(position % list.size()).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 switch (position % list.size()) {

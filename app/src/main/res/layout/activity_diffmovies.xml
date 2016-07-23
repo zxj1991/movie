@@ -9,16 +9,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:layout_marginLeft="@dimen/activity_bianju_margin"
         android:layout_marginRight="@dimen/activity_bianju_margin">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="none">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
         <com.example.movie.View.MyListView
             android:id="@+id/listview_fenlei"
             android:layout_width="match_parent"
@@ -28,7 +21,16 @@
 
         <include layout="@layout/layout_split_line"/>
 
-        <com.example.movie.View.MyGridView
+<!--<com.handmark.pulltorefresh.library.PullToRefreshScrollView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:scrollbars="none">-->
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+
+        <com.handmark.pulltorefresh.library.PullToRefreshGridView
             android:id="@+id/gridview_fenlei"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -36,13 +38,14 @@
             android:horizontalSpacing="10dp"
             android:verticalSpacing="40dp"
             android:stretchMode="columnWidth"
-            android:numColumns="3" >
+            android:numColumns="2"
+            android:scrollbars="none">
 
-        </com.example.movie.View.MyGridView>
+        </com.handmark.pulltorefresh.library.PullToRefreshGridView>
 
 
-    </LinearLayout>
-</ScrollView>
+    <!--</LinearLayout>-->
+<!--</com.handmark.pulltorefresh.library.PullToRefreshScrollView>-->
     </LinearLayout>
 
 </LinearLayout>

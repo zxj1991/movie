@@ -54,8 +54,56 @@ public class HttpUtil {
     public static void getShouye(Context context, HttpCallBack callBackack) {
 
         Map<String, Object> map = new HashMap<>();
-        map.put("null",null);
-        HttpRequestUtil.send(context,HttpRequest.HttpMethod.POST,ConstantParser.Shouye,map,callBackack);
+        map.put("null", null);
+        HttpRequestUtil.send(context, HttpRequest.HttpMethod.POST, ConstantParser.Shouye, map, callBackack);
+
+    }
+
+    /**
+     * 搜索
+     */
+    public static void getsearch(Context context, String str1, HttpCallBack callBackack) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("movies_name", str1);
+        HttpRequestUtil.send(context, HttpRequest.HttpMethod.POST, ConstantParser.Search, map, callBackack);
+    }
+
+    /**
+     * 登录
+     */
+    public static void getLogin(Context context, String phone, String password, HttpCallBack callBack) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("phone", phone);
+        map.put("password", password);
+        HttpRequestUtil.send(context, HttpRequest.HttpMethod.POST, ConstantParser.LOGIN, map, callBack);
+    }
+
+    /**
+     * 验证
+     */
+    public static void getRegister_0(Context context, String phone,int type,HttpCallBack callBack) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("phone", phone);
+        map.put("type",type);
+        HttpRequestUtil.send(context, HttpRequest.HttpMethod.POST, ConstantParser.REGISTER, map, callBack);
+    }
+
+    /**
+     * 注册
+     */
+    public static void getRegister(Context context, String phone, String code, String password, int type,HttpCallBack callBack) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("phone", phone);
+        map.put("code", code);
+        map.put("password", password);
+        map.put("type",type);
+        HttpRequestUtil.send(context, HttpRequest.HttpMethod.POST, ConstantParser.REGISTER, map, callBack);
+    }
+
+    /**
+     * 忘记密码
+     */
+    public static void getForget(){
 
     }
 

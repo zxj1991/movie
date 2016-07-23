@@ -24,4 +24,13 @@
     <style name="MediaButtonCompat.Pause">
         <item name="android:src">@drawable/media_pause</item>
     </style>
+    <style name="theme.customer_progress_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/shape_dialog_bg</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+
 </resources>

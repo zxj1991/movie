@@ -6,7 +6,7 @@ import java.util.List;
  * Created by Administrator on 2016/7/19 0019.
  */
 public class ShouyeInfo {
-
+        public static ShouyeInfo info;
     /**
      * d_id : 13778
      * d_year : 0

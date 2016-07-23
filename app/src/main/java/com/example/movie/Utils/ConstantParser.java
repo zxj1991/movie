@@ -25,9 +25,21 @@ public class ConstantParser {
 //    public static String TOKEN = "";
 
 
-    //播放列表
+    //分类列表
     public static final String LieBiao1="liebiao1";
+    //分类子列表
+    public static final String LieBiao2="liebiao2";
     //首页
     public static final String Shouye="shouye";
+    //搜索
+    public static final String Search="search";
+    //登录
+    public static final String LOGIN="index";
+    //注册
+    public static final String REGISTER="reg";
+    //忘记密码
+    public static final String FORGET="retake";
+    //
+
 }
 

@@ -62,7 +62,7 @@ public class HttpRequestUtil {
                     @Override
                     public void onSuccess(ResponseInfo<String> responseInfo) {
                         mHttpCallBack.onSuccess(responseInfo.result);
-                        Log.e("msg",responseInfo+"");
+//                        Log.e("msg",responseInfo.result);
                     }
 
                     @Override
@@ -75,6 +75,7 @@ public class HttpRequestUtil {
 
                 });
     }
+
 
 
     /**

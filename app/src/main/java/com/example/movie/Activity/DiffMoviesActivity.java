@@ -13,6 +13,7 @@ import com.example.movie.Utils.HttpCallBack;
 import com.example.movie.Utils.HttpUtil;
 import com.example.movie.View.MyGridView;
 import com.example.movie.View.MyHorizontalScrollView;
+import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,11 +51,11 @@ public class DiffMoviesActivity extends BaseActivity {
     public void initView() {
         addData();
         listview_fenlei = (ListView) findViewById(R.id.listview_fenlei);
-        gridview = (MyGridView) findViewById(R.id.gridview_fenlei);
+        gridview = (PullToRefreshGridView) findViewById(R.id.gridview_fenlei);
     }
 
 
-    private MyGridView gridview;
+    private PullToRefreshGridView gridview;
     List<FenleiInfo> list_fenlei;//视频分类的集合
 
     /**

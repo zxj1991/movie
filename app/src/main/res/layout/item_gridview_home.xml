@@ -10,7 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="130dp"
         android:src="@drawable/pic"
-        android:adjustViewBounds="true"/>
+        android:scaleType="centerCrop"/>
     <TextView
         android:id="@+id/textView_shouye_name"
         android:layout_width="wrap_content"

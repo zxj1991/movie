@@ -39,14 +39,6 @@ public class MoviesPlayActivity extends BaseActivity implements MediaController.
     @Override
     public void setcontentView() {
         setContentView(R.layout.activity_moviesplay);
-
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                HttpUtil.getbaidu(MoviesPlayActivity.this, httpCallBack);
-//
-//            }
-//        }).start();
     }
 
     @Override
@@ -72,8 +64,9 @@ public class MoviesPlayActivity extends BaseActivity implements MediaController.
         mController = new MediaController(this);
         mController.setClickIsFullScreenListener(this);
         viv.setMediaController(this.mController);
-        viv.setVideoURI(Uri.parse("android.resource://" + getPackageName()
-                + "/" + R.raw.apple));
+//        viv.setVideoURI(Uri.parse("android.resource://" + getPackageName()
+//                + "/" + R.raw.apple));
+        viv.setVideoURI(Uri.parse("http://baobab.wdjcdn.com/145076769089714.mp4"));
         viv.requestFocus();
         viv.start();
     }
@@ -85,6 +78,7 @@ public class MoviesPlayActivity extends BaseActivity implements MediaController.
         } else {
             Log.e("info", "竖屏");
             rlDD.setVisibility(View.VISIBLE);
+
         }
         super.onConfigurationChanged(newConfig);
         viv.refreshDrawableState();

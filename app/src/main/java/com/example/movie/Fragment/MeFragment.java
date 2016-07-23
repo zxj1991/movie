@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.movie.Activity.HelpActivity;
@@ -28,47 +29,61 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     private ImageView image_caidan;
     private Intent intent;
     private LinearLayout layout_help;
-    private LinearLayout layout_login;
+    private RelativeLayout layout_login;
     private LinearLayout layout_loveshare;
     private LinearLayout layout_mycollect;
     private LinearLayout layout_presentrecord;
     private LinearLayout layout_sharerecord;
     private LinearLayout layout_withdrawals;
+    private LinearLayout layout_zhanghu;
     private TextView text_set;
     private TextView title;
+    private TextView text_tishi,text_balance,text_withdrawal;
     private View view;
-
+    private ImageView image_head;
+    
     @Nullable
     public View onCreateView(LayoutInflater paramLayoutInflater, ViewGroup paramViewGroup, Bundle paramBundle)
     {
-        this.view = paramLayoutInflater.inflate(R.layout.mefragment_layout, null);
-        this.text_set = ((TextView)this.view.findViewById(R.id.textView_set));
-        this.layout_login = (LinearLayout) view.findViewById(R.id.linear_login);
-        this.layout_loveshare = ((LinearLayout)this.view.findViewById(R.id.linear_love_share));
-        this.layout_mycollect = ((LinearLayout)this.view.findViewById(R.id.linear_my_collect));
-        this.layout_help = ((LinearLayout)this.view.findViewById(R.id.linear_help));
-        this.layout_withdrawals = ((LinearLayout)this.view.findViewById(R.id.linear_withdrawals));
-        this.layout_presentrecord = ((LinearLayout)this.view.findViewById(R.id.linear_present_record));
-        this.layout_sharerecord = ((LinearLayout)this.view.findViewById(R.id.linear_share_record));
-        this.text_set.setOnClickListener(this);
-        this.layout_login.setOnClickListener(this);
-        this.layout_loveshare.setOnClickListener(this);
-        this.layout_mycollect.setOnClickListener(this);
-        this.layout_help.setOnClickListener(this);
-        this.layout_withdrawals.setOnClickListener(this);
-        this.layout_presentrecord.setOnClickListener(this);
-        this.layout_sharerecord.setOnClickListener(this);
+        view = paramLayoutInflater.inflate(R.layout.mefragment_layout, null);
+        init();
         Title();
-        return this.view;
+        return view;
     }
+
+    void init(){
+        text_set = ((TextView)view.findViewById(R.id.textView_set));
+        text_tishi= (TextView) view.findViewById(R.id.text_tishi);
+        text_balance= (TextView) view.findViewById(R.id.text_balance);
+        text_withdrawal= (TextView) view.findViewById(R.id.text_withdrawal);
+        layout_zhanghu= (LinearLayout) view.findViewById(R.id.linear_zhanghu);
+        layout_login = (RelativeLayout) view.findViewById(R.id.linear_login);
+        layout_loveshare = ((LinearLayout)view.findViewById(R.id.linear_love_share));
+        layout_mycollect = ((LinearLayout)view.findViewById(R.id.linear_my_collect));
+        layout_help = ((LinearLayout)view.findViewById(R.id.linear_help));
+        layout_withdrawals = ((LinearLayout)view.findViewById(R.id.linear_withdrawals));
+        layout_presentrecord = ((LinearLayout)view.findViewById(R.id.linear_present_record));
+        layout_sharerecord = ((LinearLayout)view.findViewById(R.id.linear_share_record));
+        image_head= (ImageView) view.findViewById(R.id.person_icon);
+        image_head.setOnClickListener(this);
+        text_set.setOnClickListener(this);
+        layout_login.setOnClickListener(this);
+        layout_loveshare.setOnClickListener(this);
+        layout_mycollect.setOnClickListener(this);
+        layout_help.setOnClickListener(this);
+        layout_withdrawals.setOnClickListener(this);
+        layout_presentrecord.setOnClickListener(this);
+        layout_sharerecord.setOnClickListener(this);
+    }
+
 
 
     public void Title()
     {
-        this.title = (TextView)this.view.findViewById(R.id.apptitle);
-        this.title.setText("个人中心");
-        this.text_set.setVisibility(View.VISIBLE);
-//        this.image_caidan.setVisibility(View.INVISIBLE);
+        title = (TextView)view.findViewById(R.id.apptitle);
+        title.setText("个人中心");
+        text_set.setVisibility(View.VISIBLE);
+//        image_caidan.setVisibility(View.INVISIBLE);
     }
 
     public void onClick(View v)
@@ -76,40 +91,52 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         switch (v.getId())
         {
             case R.id.textView_set:
-                this.intent = new Intent(getActivity(), SetActivity.class);
-                startActivity(this.intent);
+                intent = new Intent(getActivity(), SetActivity.class);
+                startActivity(intent);
                 break;
-            case R.id.linear_login:
-                this.intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(this.intent);
+            case R.id.person_icon:
+//                intent = new Intent(getActivity(), LoginActivity.class);
+//                startActivity(intent);
+                startActivityForResult(new Intent(getActivity(),LoginActivity.class),1);
+
                 break;
             case R.id.linear_love_share:
-                this.intent = new Intent(getActivity(), LoveShareActivity.class);
-                startActivity(this.intent);
+                intent = new Intent(getActivity(), LoveShareActivity.class);
+                startActivity(intent);
                 break;
             case R.id.linear_my_collect:
-                this.intent = new Intent(getActivity(), MyCollectActivity.class);
-                startActivity(this.intent);
+                intent = new Intent(getActivity(), MyCollectActivity.class);
+                startActivity(intent);
                 break;
             case R.id.linear_help:
-                this.intent = new Intent(getActivity(), HelpActivity.class);
-                startActivity(this.intent);
+                intent = new Intent(getActivity(), HelpActivity.class);
+                startActivity(intent);
                 break;
             case R.id.linear_withdrawals:
-                this.intent = new Intent(getActivity(), WithdrawalsActivity.class);
-                startActivity(this.intent);
+                intent = new Intent(getActivity(), WithdrawalsActivity.class);
+                startActivity(intent);
                 break;
             case R.id.linear_present_record:
-                this.intent = new Intent(getActivity(), PresentRecordActivity.class);
-                startActivity(this.intent);
+                intent = new Intent(getActivity(), PresentRecordActivity.class);
+                startActivity(intent);
                 break;
             case R.id.linear_share_record:
-                this.intent = new Intent(getActivity(), ShareRecordActivity.class);
-                startActivity(this.intent);
+                intent = new Intent(getActivity(), ShareRecordActivity.class);
+                startActivity(intent);
                 break;
         }
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data!=null){
+            image_head.setImageResource(data.getExtras().getInt("pic"));
+            text_tishi.setVisibility(View.GONE);
+            layout_zhanghu.setVisibility(View.VISIBLE);
+
+        }
 
 
+    }
 }

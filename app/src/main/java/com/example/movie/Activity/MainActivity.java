@@ -3,16 +3,22 @@ package com.example.movie.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.movie.Bean.AllSaveData;
+import com.example.movie.Bean.ShouyeInfo;
 import com.example.movie.Fragment.HomeFragment;
 import com.example.movie.Fragment.MeFragment;
 import com.example.movie.Fragment.VideoShareFragment;
 import com.example.movie.R;
+import com.example.movie.Utils.HttpCallBack;
+import com.example.movie.Utils.HttpUtil;
+import com.google.gson.Gson;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private FragmentManager fragmentManager;
@@ -60,6 +66,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     fragmentTransaction.add(R.id.main_framelayout, homeFragment);
                 } else {
                     fragmentTransaction.show(this.homeFragment);
+
                 }
                 break;
 
