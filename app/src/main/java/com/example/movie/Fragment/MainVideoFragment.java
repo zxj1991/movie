@@ -1,5 +1,6 @@
 package com.example.movie.Fragment;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -9,6 +10,7 @@ import android.os.Message;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.telecom.Call;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +30,6 @@ import com.example.movie.Adapter.ViewHolder;
 import com.example.movie.Bean.AllSaveData;
 import com.example.movie.Bean.ShouyeInfo;
 import com.example.movie.R;
-import com.example.movie.Utils.DialogUtils;
 import com.example.movie.Utils.HttpCallBack;
 import com.example.movie.Utils.HttpUtil;
 import com.example.movie.View.MyGridView;
@@ -57,14 +58,13 @@ public class MainVideoFragment extends Fragment implements View.OnClickListener 
     private ViewPager vp_viewPager;
     private ImageView[] indicator_imgs = new ImageView[5];
     private ArrayList<View> list;//装轮播图片的集合
-
     List<ShouyeInfo.SlideBean> list_slide;
 
     Thread thread;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        info=AllSaveData.getInstance().info;
         Log.i("msg", "创建之前加载数据info是否为空" + (info == null ? "    为空" : "     不为空"));//提前执行了
     }
 
@@ -72,7 +72,7 @@ public class MainVideoFragment extends Fragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater paramLayoutInflater, ViewGroup paramViewGroup, Bundle paramBundle) {
         view = paramLayoutInflater.inflate(R.layout.mainvideofragment_layout, null);
         initview();
-        info=AllSaveData.getInstance().info;
+
         gd.setSelector(new ColorDrawable(0));//gridview子项选中无背景颜色
         sv.smoothScrollTo(0, 0);
         inittips();
@@ -80,7 +80,6 @@ public class MainVideoFragment extends Fragment implements View.OnClickListener 
 //       getData();
         return view;
     }
-//==woxiankanakn你服务器 返回的问题
 
     /**
      * 初始化所有空控件
@@ -102,25 +101,25 @@ public class MainVideoFragment extends Fragment implements View.OnClickListener 
         switch (type) {
             case 0:
                 Log.i("msg","1执行11");
-                setGd(AllSaveData.getInstance().info.getVods1());
-                frgment();
+                setGd(info.getVods1());
+//                frgment();
                 break;
             case 1:
                 Log.i("msg", "执行22");
-                if (info != null) {
-//                    setGd(info.getVods2());
-                } else {
+                    setGd(info.getVods2());//电影
                     Log.i("msg", "info现在为空不加载");
-                }
-                frgment();
+//                frgment();
                 break;
             case 2:
-//                setGd(info.getVods3());
-                frgment();
+                setGd(info.getVods3());//电视剧
+//                frgment();
                 break;
             case 3:
-//                setGd(info.getVods4());
-                frgment();
+                setGd(info.getVods4());//综艺
+//                frgment();
+                break;
+            case 4:
+                setGd(info.getVods4());//动漫
                 break;
 
         }
@@ -132,6 +131,7 @@ public class MainVideoFragment extends Fragment implements View.OnClickListener 
         super.onResume();
         Log.i("msg", "就绪");
         isStop = false;
+        frgment();
     }
 
     //    private void frgment(List<String> listtext) {
@@ -141,7 +141,7 @@ public class MainVideoFragment extends Fragment implements View.OnClickListener 
         thread = new Thread(new Runnable() {
             public void run() {
                 while (!isStop) {
-                    SystemClock.sleep(3000);
+                    SystemClock.sleep(5000);
                     if (getActivity() != null) {
                         getActivity().runOnUiThread(new Runnable() {
                             public void run() {
@@ -205,7 +205,7 @@ public class MainVideoFragment extends Fragment implements View.OnClickListener 
         vp_viewPager.setAdapter(vp_adapter);
         vp_viewPager.setCurrentItem(100 * list.size());
         vp_viewPager.setOnPageChangeListener(new MyListener());
-        if (type == 0) {//电影数据
+        if (type == 0) {//精选数据
             gd.setAdapter(new CommonAdapter<ShouyeInfo.Vods1Bean>(getActivity(),  AllSaveData.getInstance().info.getVods1(), R.layout.item_gridview_home) {
                 @Override
                 public void convert(ViewHolder viewHolder, ShouyeInfo.Vods1Bean item) {
@@ -215,18 +215,48 @@ public class MainVideoFragment extends Fragment implements View.OnClickListener 
 
                 }
             });
-        } else if (type == 1) {//电视剧数据
-            gd.setAdapter(new CommonAdapter<ShouyeInfo.Vods2Bean>(getActivity(),  AllSaveData.getInstance().info.getVods2(), R.layout.item_gridview_home) {
+        } else if (type == 1) {//电影数据
+            gd.setAdapter(new CommonAdapter<ShouyeInfo.Vods1Bean>(getActivity(),  AllSaveData.getInstance().info.getVods1(), R.layout.item_gridview_home) {
                 @Override
-                public void convert(ViewHolder viewHolder, ShouyeInfo.Vods2Bean item) {
+                public void convert(ViewHolder viewHolder, ShouyeInfo.Vods1Bean item) {
 
                         viewHolder.setImageBitmap(R.id.imageView_shouye, item.getD_pic());
                         viewHolder.setText(R.id.textView_shouye_name, item.getD_name());
 
                 }
             });
-        }else if (type == 2) {//综艺数据
-            gd.setAdapter(new CommonAdapter<ShouyeInfo.Vods3Bean>(getActivity(),  AllSaveData.getInstance().info.getVods3(), R.layout.item_gridview_home) {
+            gd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(getActivity(), MoviesPlayActivity.class);
+                    int i = Integer.parseInt(info.getVods1().get(position).getD_id());
+                    intent.putExtra("id", i);
+                    startActivity(intent);
+                }
+            });
+
+        }else if (type == 2) {//电视剧数据
+            gd.setAdapter(new CommonAdapter<ShouyeInfo.Vods2Bean>(getActivity(),  AllSaveData.getInstance().info.getVods2(), R.layout.item_gridview_home) {
+                @Override
+                public void convert(ViewHolder viewHolder, ShouyeInfo.Vods2Bean item) {
+
+                    viewHolder.setImageBitmap(R.id.imageView_shouye, item.getD_pic());
+                    viewHolder.setText(R.id.textView_shouye_name, item.getD_name());
+
+                }
+            });
+            gd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(getActivity(), MoviesPlayActivity.class);
+                    int i = Integer.parseInt(info.getVods2().get(position).getD_id());
+                    intent.putExtra("id", i);
+                    startActivity(intent);
+                }
+            });
+
+        }else if (type == 3) {//综艺数据
+            gd.setAdapter(new CommonAdapter<ShouyeInfo.Vods3Bean>(getActivity(), AllSaveData.getInstance().info.getVods3(), R.layout.item_gridview_home) {
                 @Override
                 public void convert(ViewHolder viewHolder, ShouyeInfo.Vods3Bean item) {
 
@@ -235,25 +265,58 @@ public class MainVideoFragment extends Fragment implements View.OnClickListener 
 
                 }
             });
-        }else if (type == 3) {//动漫数据
-            gd.setAdapter(new CommonAdapter<ShouyeInfo.Vods4Bean>(getActivity(),  AllSaveData.getInstance().info.getVods4(), R.layout.item_gridview_home) {
+            gd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(getActivity(), MoviesPlayActivity.class);
+                    int i = Integer.parseInt(info.getVods3().get(position).getD_id());
+                    intent.putExtra("id", i);
+                    startActivity(intent);
+                }
+            });
+        }else if(type==4){
+            gd.setAdapter(new CommonAdapter<ShouyeInfo.Vods4Bean>(getActivity(),info.getVods4(),R.layout.item_gridview_home) {
                 @Override
                 public void convert(ViewHolder viewHolder, ShouyeInfo.Vods4Bean item) {
-
-                    viewHolder.setImageBitmap(R.id.imageView_shouye, item.getD_pic());
-                    viewHolder.setText(R.id.textView_shouye_name, item.getD_name());
-
+                    viewHolder.setImageBitmap(R.id.imageView_shouye,item.getD_pic());
+                    viewHolder.setText(R.id.textView_shouye_name,item.getD_name());
+                }
+            });
+            gd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(getActivity(), MoviesPlayActivity.class);
+                    int i = Integer.parseInt(info.getVods4().get(position).getD_id());
+                    intent.putExtra("id", i);
+                    startActivity(intent);
                 }
             });
         }
-        gd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), MoviesPlayActivity.class);
-                startActivity(intent);
-            }
-        });
+//        gd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(getActivity(), MoviesPlayActivity.class);
+//                int i= Integer.parseInt(info.getVods1().get(position).getD_id());
+//                intent.putExtra("id",i);
+//                startActivity(intent);
+//            }
+//        });
     }
+///**
+// * 监听gridview点击事件
+// */
+//    public void set(){
+//        gd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent=new Intent();
+//                int i= Integer.parseInt(info.getVods1().get(position).getD_id());
+//                intent.putExtra("id",i);
+//                intent.setClass(getActivity(), MoviesPlayActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//    }
 
 
     /**
@@ -267,6 +330,7 @@ public class MainVideoFragment extends Fragment implements View.OnClickListener 
         startActivity(intent);
     }
 
+
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.sousuo:
@@ -274,7 +338,11 @@ public class MainVideoFragment extends Fragment implements View.OnClickListener 
                 startActivity(intent);
                 break;
             case R.id.fenlei:
-                intent = new Intent(getActivity(), DiffMoviesActivity.class);
+                intent = new Intent();
+                intent.putExtra("id",type);
+                intent.setClass(getActivity(),DiffMoviesActivity.class);
+//                listener.sendContent(type);
+                Log.e("msg","fragmetn,type="+type);
                 startActivity(intent);
                 break;
         }
@@ -324,6 +392,7 @@ public class MainVideoFragment extends Fragment implements View.OnClickListener 
     public void onPause() {
         super.onPause();
         isStop = true;
+        Log.i("msg","暂停时isStop="+(isStop==true));
 
 
     }

@@ -9,15 +9,18 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.movie.Bean.AllSaveData;
 import com.example.movie.Bean.ShouyeInfo;
+import com.example.movie.Bean.User;
 import com.example.movie.Fragment.HomeFragment;
 import com.example.movie.Fragment.MeFragment;
 import com.example.movie.Fragment.VideoShareFragment;
 import com.example.movie.R;
 import com.example.movie.Utils.HttpCallBack;
 import com.example.movie.Utils.HttpUtil;
+import com.example.movie.Utils.JSONParser;
 import com.google.gson.Gson;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -102,6 +105,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     public void initView() {
+        getData();
         fragmentManager = getFragmentManager();
         layout_video = (LinearLayout) findViewById(R.id.layout_video);
         layout_share = (LinearLayout) findViewById(R.id.layout_share);
@@ -135,5 +139,28 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void setcontentView() {
         setContentView(R.layout.activity_main);
     }
+
+    /**
+     * 获取用户信息
+     */
+    public void getData() {
+        String phone= User.getInstance().userphone;
+        Log.e("msg","phone="+phone);
+        HttpUtil.getPersonal(this, phone, new HttpCallBack() {
+            @Override
+            public void onSuccess(String result) {
+                Log.e("msg", "个人中心获取资料=" + result);
+                saveLoginData(result);
+            }
+
+            @Override
+            public void onFailure(String error) {
+
+            }
+        });
+    }
+
+
+
 
 }

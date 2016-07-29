@@ -20,11 +20,10 @@ public class ConstantParser {
 
     // 接口前面部分
     public static final String HTTP_URI = HTTP_HANDER;
-//    // 登录
-//    public static final String LOGIN = "login/index";
-//    public static String TOKEN = "";
 
 
+    //播放
+    public static final String BoFang="bofang";
     //分类列表
     public static final String LieBiao1="liebiao1";
     //分类子列表
@@ -39,7 +38,10 @@ public class ConstantParser {
     public static final String REGISTER="reg";
     //忘记密码
     public static final String FORGET="retake";
-    //
+    //个人中心
+    public static final String Personal="info";
+    //编辑个人中心
+    public static final String Editpersonal="edit";
 
 }
 

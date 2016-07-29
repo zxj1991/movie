@@ -1,8 +1,11 @@
 package com.example.movie.Activity;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -32,6 +35,7 @@ public class SearchActivity extends BaseActivity {
     private ImageView imageView_search;
     private EditText editText_search;
     private ListView listView;
+    Button bt;
 
     @Override
     public void setcontentView() {
@@ -65,26 +69,51 @@ public class SearchActivity extends BaseActivity {
         listView = (ListView) findViewById(R.id.listview_search);
     }
 
-
+    List<SearchInfo> info;
     public void getData() {
         HttpUtil.getsearch(this, str, new HttpCallBack() {
             @Override
             public void onSuccess(String result) {
                 Log.e("zxj123", result);
-                if (!result.substring(2,7).equals("false")) {
+                if (!result.substring(2, 7).equals("false")) {
                     Log.e("msg", "");
-                    List<SearchInfo> info = SearchInfo.arraySearchInfoFromData(result);
+                    info = SearchInfo.arraySearchInfoFromData(result);
                     listView.setAdapter(new CommonAdapter<SearchInfo>(SearchActivity.this, info, R.layout.item_search) {
                         @Override
-                        public void convert(ViewHolder viewHolder, SearchInfo item) {
+                        public void convert(final ViewHolder viewHolder, SearchInfo item) {
                             viewHolder.setImageBitmap(R.id.imageView_search, item.getD_pic());
                             viewHolder.setText(R.id.textView_search_name, item.getD_name());
                             viewHolder.setText(R.id.textView_search_actor, item.getD_starring());
                             viewHolder.setText(R.id.textView_search_year, item.getD_year());
-
+                            bt = viewHolder.getView(R.id.button_bofang);
+                            bt.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent();
+                                    int i = Integer.parseInt(info.get(viewHolder.getPosition()).getD_id());
+                                    Log.e("msg", i + "");
+                                    intent.putExtra("id", i);
+                                    intent.setClass(SearchActivity.this, MoviesPlayActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
 
                         }
+
                     });
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Intent intent = new Intent();
+                            int i = Integer.parseInt(info.get(position).getD_id());
+                            Log.e("msg", i + "");
+                            intent.putExtra("id", i);
+                            intent.setClass(SearchActivity.this, MoviesPlayActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+
+
                 } else {
                     Log.e("msg", "弹出土司");
                     Toast.makeText(SearchActivity.this, "没有搜索到内容", Toast.LENGTH_SHORT).show();

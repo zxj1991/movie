@@ -38,6 +38,7 @@ public class SetActivity extends BaseActivity implements View.OnClickListener{
         layout_security.setOnClickListener(this);
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -45,11 +46,14 @@ public class SetActivity extends BaseActivity implements View.OnClickListener{
                 StartActivity(PersonalActivity.class);
                 break;
             case R.id.linear_reset:
-                StartActivity(ResetActivity.class);
+                StartActivity(FoundActivity.class);
             break;
             case R.id.linear_security:
                 StartActivity(SecurityActivity.class);
             break;
         }
     }
+
+
+
 }

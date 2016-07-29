@@ -32,13 +32,39 @@
                 android:layout_marginLeft="10dp">
 
                 <TextView
+                    android:id="@+id/textView_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp"
+                    android:textSize="18dp"
+                    android:text="123"
+                    android:textColor="@color/colorshareTop" />
+
+                <ImageView
+                    android:id="@+id/imageView_collect"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/mycollect"
+                    android:layout_below="@+id/textView_name"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="10dp" />
+                <ImageView
+                    android:id="@+id/imageView_share"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_below="@+id/textView_name"
+                    android:src="@drawable/loveshare"
+                    android:layout_toLeftOf="@+id/imageView_collect"
+                    android:layout_marginRight="10dp"/>
+
+                <TextView
                     android:id="@+id/textView_zhuyan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="主演："
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginTop="10dp" />
+                    android:layout_below="@+id/imageView_collect" />
 
                 <TextView
                     android:id="@+id/textView_zhuyan_details"
@@ -46,14 +72,14 @@
                     android:layout_height="wrap_content"
                     android:text="海清、杜淳、张泽、陈小艺"
                     android:textColor="@color/textcolorBlack"
-                    android:layout_above="@+id/textView_daoyan"
+                    android:layout_below="@+id/imageView_collect"
                     android:layout_toRightOf="@+id/textView_zhuyan" />
 
                 <TextView
                     android:id="@+id/textView_daoyan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/textView_zhuyan"
+                    android:layout_below="@+id/textView_zhuyan_details"
                     android:text="导演：" />
 
                 <TextView
@@ -193,9 +219,9 @@
                         android:gravity="center">
 
                         <!--<ImageView-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:background="@drawable/pic" />-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:background="@drawable/pic" />-->
 
                     </LinearLayout>
 

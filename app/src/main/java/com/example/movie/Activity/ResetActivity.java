@@ -3,6 +3,7 @@ package com.example.movie.Activity;
 import com.example.movie.R;
 
 /**
+ * 没用
  * Created by 潇舰 on 2016/7/10.
  */
 public class ResetActivity extends BaseActivity {

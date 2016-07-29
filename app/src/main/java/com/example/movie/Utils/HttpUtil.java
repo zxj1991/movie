@@ -36,17 +36,39 @@ public class HttpUtil {
 //    }
 
     /**
+     * 播放
+     */
+    public static void getBoFang(Context context,int id,HttpCallBack callBack){
+        Map<String,Object> map=new HashMap<>();
+        map.put("id",id);
+        HttpRequestUtil.send(context,HttpRequest.HttpMethod.POST,ConstantParser.BoFang,map,callBack);
+    }
+
+
+    /**
      * 获取分类界面数据
      *
      * @param context
      * @param callBack
      */
-    public static void getFenLei(Context context, HttpCallBack callBack) {
+    public static void getFenLei1(Context context, int id, int index, HttpCallBack callBack) {
         Map<String, Object> map = new HashMap<>();
-        map.put("null", null);
+        map.put("id", id);  //视频类型
+        map.put("index", index); //页码，用于上拉加载
         HttpRequestUtil.send(context, HttpRequest.HttpMethod.POST, ConstantParser.LieBiao1, map, callBack);
 
     }
+
+    /**
+     * 获取分类界面详细信息
+     */
+    public static void getFenLei2(Context context,int index, int type, HttpCallBack callBack) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("index", index); //页码，用于上拉加载
+        map.put("type", type);   //视频类型详细分类
+        HttpRequestUtil.send(context, HttpRequest.HttpMethod.POST, ConstantParser.LieBiao2, map, callBack);
+    }
+
 
     /**
      * 获取首页界面数据
@@ -79,32 +101,67 @@ public class HttpUtil {
     }
 
     /**
-     * 验证
+     * 注册验证
      */
-    public static void getRegister_0(Context context, String phone,int type,HttpCallBack callBack) {
+    public static void getRegister_0(Context context, String phone, int type, HttpCallBack callBack) {
         Map<String, Object> map = new HashMap<>();
         map.put("phone", phone);
-        map.put("type",type);
+        map.put("type", type);
         HttpRequestUtil.send(context, HttpRequest.HttpMethod.POST, ConstantParser.REGISTER, map, callBack);
     }
 
     /**
      * 注册
      */
-    public static void getRegister(Context context, String phone, String code, String password, int type,HttpCallBack callBack) {
+    public static void getRegister(Context context, String phone, String code, String password, int type, HttpCallBack callBack) {
         Map<String, Object> map = new HashMap<>();
         map.put("phone", phone);
         map.put("code", code);
         map.put("password", password);
-        map.put("type",type);
+        map.put("type", type);
         HttpRequestUtil.send(context, HttpRequest.HttpMethod.POST, ConstantParser.REGISTER, map, callBack);
     }
 
     /**
-     * 忘记密码
+     * 找回密码验证
      */
-    public static void getForget(){
-
+    public static void getForget_0(Context context, String phone, int type, HttpCallBack callBack) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("phone", phone);
+        map.put("type", type);
+        HttpRequestUtil.send(context, HttpRequest.HttpMethod.POST, ConstantParser.FORGET, map, callBack);
     }
 
+
+    /**
+     * 忘记密码
+     */
+    public static void getForget(Context context,String phone,String code, String password,int type,HttpCallBack callBack) {
+        Map<String,Object> map=new HashMap<>();
+        map.put("phone",phone);
+        map.put("code", code);
+        map.put("password", password);
+        map.put("type",type);
+        HttpRequestUtil.send(context, HttpRequest.HttpMethod.POST, ConstantParser.FORGET, map, callBack);
+    }
+
+    /**
+     * 个人中心
+     */
+    public static void getPersonal(Context context,String phone,HttpCallBack callBack){
+        Map<String,Object> map=new HashMap<>();
+        map.put("phone",phone);
+        HttpRequestUtil.send(context, HttpRequest.HttpMethod.POST,ConstantParser.Personal,map,callBack);
+    }
+
+    /**
+     * 编辑个人资料
+     */
+    public static void getEditpersonal(Context context,String phone,String nicheng,HttpCallBack callBack){
+        Map<String,Object> map=new HashMap<>();
+        map.put("phone",phone);
+        map.put("name",nicheng);
+        HttpRequestUtil.send(context, HttpRequest.HttpMethod.POST,ConstantParser.Editpersonal,map,callBack);
+
+    }
 }

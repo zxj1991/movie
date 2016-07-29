@@ -2,6 +2,7 @@ package com.example.movie;
 
 import android.app.Application;
 
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
@@ -11,6 +12,9 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.decode.BaseImageDecoder;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
+import com.nostra13.universalimageloader.utils.StorageUtils;
+
+import java.io.File;
 
 /**
  * Created by 潇舰 on 2016/7/10.
@@ -18,6 +22,7 @@ import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
+        File cacheDir = StorageUtils.getOwnCacheDirectory(getApplicationContext(), "imageloader/Cache");//缓存文件的存放地址
         ImageLoaderConfiguration condig = new ImageLoaderConfiguration
                 .Builder(this)//
                 .memoryCacheExtraOptions(480, 800)//
@@ -29,6 +34,7 @@ public class MyApplication extends Application {
                 .memoryCacheSize(2*1024*1024)//
                 .diskCacheSize(50*1024*1024)//
                 .diskCacheFileCount(100)    //缓存的文件数量
+                .diskCache(new UnlimitedDiskCache(cacheDir))
                 .diskCacheFileNameGenerator(new Md5FileNameGenerator())//
                 .imageDownloader(new BaseImageDownloader(this,5*1000,30*1000))//
                 .imageDecoder(new BaseImageDecoder(true))

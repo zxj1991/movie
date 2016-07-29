@@ -11,7 +11,6 @@ import java.util.List;
  * Created by Administrator on 2016/7/21 0021.
  */
 public class SearchInfo{
-
     /**
      * d_id : 2579
      * d_name : 《中国好声音》丁丁青春演绎曲目，这位女孩唱地更唯美！爱要坦荡荡

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.movie.R;
 import com.example.movie.Utils.HttpCallBack;
 import com.example.movie.Utils.HttpUtil;
+import com.example.movie.Utils.JSONParser;
 import com.example.movie.Utils.Regular;
 import com.google.gson.Gson;
 
@@ -33,6 +34,7 @@ public class RegisterActivity extends BaseActivity {
     @Override
     public void afterinitView() {
         getCode();
+        Register();//
     }
 
     @Override
@@ -63,7 +65,6 @@ public void getCode(){
                 getData(0);
                 Toast.makeText(RegisterActivity.this,"请等待......",Toast.LENGTH_SHORT).show();
                 Register();
-
             }else{
                 Toast.makeText(RegisterActivity.this,"手机号码不符合规则",Toast.LENGTH_SHORT).show();
             }
@@ -83,9 +84,7 @@ public void getCode(){
                 password= String.valueOf(edit_password.getText());
                 if (code!=null&&password!=null){
                     getData(1);
-
-                    Log.e("msg", "注册");
-                }else{
+                } else{
                     Toast.makeText(RegisterActivity.this,"请完善所有数据",Toast.LENGTH_SHORT).show();
                 }
             }
@@ -97,14 +96,12 @@ public void getCode(){
     /**
      * 请求数据
      */
-    static String code1;
     public void getData(int type) {
         if(type==0) {//验证
             HttpUtil.getRegister_0(this, phone, type,new HttpCallBack() {
                 @Override
                 public void onSuccess(String result) {
-                    Log.e("msg","验证时返回的数据="+result);
-                    code1=result;
+//                    Log.e("msg","验证时返回的数据="+result);
                 }
 
                 @Override
@@ -117,17 +114,22 @@ public void getCode(){
                 HttpUtil.getRegister(this, phone, code, password, type, new HttpCallBack() {
                     @Override
                     public void onSuccess(String result) {//注册成功后，返回登录界面
-                        Log.e("msg",result.substring(1,result.length()));
+                        Log.e("msg",result.substring(1,result.length())+"111111");
+//                        Log.e("msg",JSONParser.getStringFromJsonString("gll", result)+"2222222");
                         if (result.substring(1,result.length()-1).equals("success")){
-                            Log.e("zxj", "注册成功，返回登录界面");
+//                            Log.e("zxj", "注册成功，返回登录界面");
                             Intent intent=new Intent();
-                            intent.putExtra("phone",phone);
-                            intent.putExtra("password",password);
-                            RegisterActivity.this.setResult(RESULT_OK,intent);
+                            intent.putExtra("phone", phone);
+                            intent.putExtra("password", password);
+                            RegisterActivity.this.setResult(RESULT_OK, intent);
+                            Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
                             finish();
+//
+
+                        }else if(result.substring(2,5).equals("gll")){//若用户已注册
+                            Toast.makeText(RegisterActivity.this,"用户已存在",Toast.LENGTH_SHORT).show();
                         }
 
-                        Log.e("msg", "注册时返回的数据="+result);
                     }
 
                     @Override

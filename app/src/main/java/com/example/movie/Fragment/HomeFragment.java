@@ -57,6 +57,7 @@ public class HomeFragment extends Fragment {
         mainPagerAdapter = new MainPagerAdapter(getActivity().getFragmentManager(), fragments_list, taglist);
         main_viewpager.setAdapter(mainPagerAdapter);
         tablayout.setupWithViewPager(main_viewpager);
+        main_viewpager.setOffscreenPageLimit(0);
 
         main_viewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -86,7 +87,6 @@ public class HomeFragment extends Fragment {
         HttpUtil.getShouye(getActivity(), new HttpCallBack() {
             @Override
             public void onSuccess(String result) {
-//                DialogUtils.closeLoadingDialog();
                 Gson gson = new Gson();
                 AllSaveData.getInstance().info = gson.fromJson(result, ShouyeInfo.class);
                 Log.i("msg", "保存数据成功？" + (AllSaveData.getInstance().info != null));

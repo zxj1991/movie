@@ -1,6 +1,7 @@
 package com.example.movie.Utils;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -17,6 +18,7 @@ import java.util.List;
  * Created by Administrator on 2016/7/21 0021.
  */
 public class JSONParser {
+
     /**
      * Json转对象
      * @param <T>
@@ -27,12 +29,14 @@ public class JSONParser {
     public static <T> T JSON2Object(String jsonStr, Class<T> cls) {
         try {
             // 不为空，并且服务器没有异常
-            if(!TextUtils.isEmpty(jsonStr)){
+            if(isNoEmpty(jsonStr)){
                 if(jsonStr.indexOf("exception") == -1 ){
                     System.out.println("JSON "+jsonStr+"\nJSON");
+
                     return JSON.parseObject(jsonStr, cls);
+
                 } else {
-//                    LogUtil.e("服务器异常："+jsonStr);
+//                    Log.e("服务器异常：" + jsonStr);
                 }
             }
         } catch (Exception e) {
@@ -50,7 +54,7 @@ public class JSONParser {
     public static <T> List<T> JSON2Array(String jsonStr, Class<T> cls){
         try {
             // 不为空，并且服务器没有异常
-            if(TextUtils.isEmpty(jsonStr)){
+            if(isNoEmpty(jsonStr)){
                 if(jsonStr.indexOf("exception") == -1 ){
                     return JSON.parseArray(jsonStr, cls);
                 } else {
@@ -64,17 +68,15 @@ public class JSONParser {
         return null;
     }
     /**
-     *
-     *
-     *
-     * jsonString  JSON数据串
-     *
+     * @param jsonStr      获取的字段
+     * @param key  JSON数据串
+     * @return
      */
     public static String getStringFromJsonString(String key,String jsonStr){
         JSONObject dataJson;
         String success="";
         try {
-            if(!TextUtils.isEmpty(jsonStr)){
+            if(!isNoEmpty(jsonStr)){
                 return success;
             }
             try {
@@ -116,7 +118,7 @@ public class JSONParser {
     }
 
     /**
-     * obj    list转成JSON数据串
+     * @param list    list转成JSON数据串
      * @return
      */
     public static String listToJson(List<?> list){
@@ -133,13 +135,13 @@ public class JSONParser {
     }
 
     /**
-     *  obj    list转成JSON数据串
+     * @param result    list转成JSON数据串
      * @return
      */
     public static List<String> getJsonKeys(String result){
         List<String> success = new ArrayList<String>();
         try {
-            if (!TextUtils.isEmpty(result)) {
+            if (!isNoEmpty(result)) {
                 return success;
             }
             JSONObject json = new JSONObject(result);
@@ -163,17 +165,25 @@ public class JSONParser {
         String status = JSONParser.getStringFromJsonString("status", result);
         if (!"0".equals(status)) {
             models = JSONParser.getStringFromJsonString("models", result);
-            if (!TextUtils.isEmpty(models)) {
+            if (!isNoEmpty(models)) {
                 models = result;
             }
         }else{
             String data = JSONParser.getStringFromJsonString("data", result);
             models = JSONParser.getStringFromJsonString("models", data);
-            if (!TextUtils.isEmpty(models)) {
+            if (!isNoEmpty(models)) {
                 models = data;
             }
         }
         return models;
     }
+
+    public static boolean isNoEmpty(String s) {
+        if ("".equals(s) || "[]".equals(s)  || "null".equals(s) || "NULL".equals(s) || null == s) {
+            return false;
+        }
+        return true;
+    }
+
 
 }

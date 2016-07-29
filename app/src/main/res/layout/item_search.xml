@@ -1,45 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:descendantFocusability="blocksDescendants">
 
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="130dp"
         android:layout_weight="1">
+
         <ImageView
             android:id="@+id/imageView_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/pic"
-            android:adjustViewBounds="true"/>
+            android:adjustViewBounds="true" />
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_marginLeft="10dp"
         android:layout_width="0dp"
         android:layout_height="130dp"
         android:layout_weight="2">
+
         <TextView
             android:id="@+id/textView_search_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="名称"
             android:textSize="@dimen/text_size_16"
-            android:textColor="@color/colorshareTop"/>
+            android:textColor="@color/colorshareTop" />
+
         <TextView
             android:id="@+id/textView_search_actor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="演员"
             android:layout_below="@+id/textView_search_name"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp" />
+
         <TextView
             android:id="@+id/textView_search_leixing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="类型"
-            android:layout_below="@+id/textView_search_actor"/>
+            android:layout_below="@+id/textView_search_actor" />
+
         <TextView
             android:id="@+id/textView_search_year"
             android:layout_width="wrap_content"
@@ -48,6 +55,7 @@
             android:layout_below="@id/textView_search_leixing" />
 
         <Button
+            android:id="@+id/button_bofang"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_alignParentBottom="true"
@@ -55,8 +63,8 @@
             android:text="播放"
             android:textSize="@dimen/text_size_16"
             android:textColor="@color/colorWhite"
-            android:background="@drawable/button_search"/>
+            android:background="@drawable/button_search" />
 
     </RelativeLayout>
-    
+
 </LinearLayout>

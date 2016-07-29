@@ -2,6 +2,9 @@ package com.example.movie.Activity;
 
 import com.example.movie.R;
 
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+
 /**
  * Created by 潇舰 on 2016/7/10.
  */
@@ -25,4 +28,8 @@ public class LoveShareActivity extends BaseActivity{
     public void initView() {
 
     }
+
+
+
+
 }
